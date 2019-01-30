@@ -8,7 +8,6 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { ContactComponent } from './contacts/contact/contact.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { ContactService } from './shared/contact.service';
-import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
