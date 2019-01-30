@@ -28,7 +28,7 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if (form.value.id == null){
+    if (form.value.id == null) {
       this.insertRecord(form);
     } else {
       this.updateRecord(form);
