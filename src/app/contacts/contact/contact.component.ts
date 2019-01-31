@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ContactService} from '../../shared/contact.service';
 import {NgForm} from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact',
@@ -9,8 +10,8 @@ import {NgForm} from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
 
-  constructor(private service: ContactService) { }
-
+  constructor(private service: ContactService,
+              private toastr: ToastrService) {}
   ngOnInit() {
     this.resetForm();
   }
@@ -36,19 +37,18 @@ export class ContactComponent implements OnInit {
   }
 
   insertRecord(form: NgForm) {
-    // this.service.postEmployee(form.value).subscribe(res => {
-    //   this.toastr.success('Inserted successfully', 'EMP. Register');
-    //   this.resetForm(form);
-    //   this.service.refreshList();
-    // });
+    this.service.postContact(form.value).subscribe(res => {
+      this.toastr.success('Registro inserido com sucesso', 'Agenda');
+      this.resetForm(form);
+      this.service.refreshList();
+    });
   }
 
   updateRecord(form: NgForm) {
-    // this.service.putEmployee(form.value).subscribe(res => {
-    //   this.toastr.info('Updated successfully', 'EMP. Register');
-    //   this.resetForm(form);
-    //   this.service.refreshList();
-    // });
-
+    this.service.putContact(form.value).subscribe(res => {
+      this.toastr.info('Updated successfully', 'EMP. Register');
+      this.resetForm(form);
+      this.service.refreshList();
+    });
   }
 }

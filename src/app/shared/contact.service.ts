@@ -14,7 +14,7 @@ export class ContactService {
   constructor(private http: HttpClient) { }
 
   postContact(formData: Contact) {
-    return this.http.post(this.rootURL + '/creat', formData);
+    return this.http.post(this.rootURL + '/insert', formData);
   }
 
   refreshList() {
