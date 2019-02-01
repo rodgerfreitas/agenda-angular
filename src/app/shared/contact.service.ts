@@ -9,6 +9,7 @@ export class ContactService {
 
   formData: Contact;
   list: Contact[];
+  errorList: string[];
   readonly rootURL = 'http://agenda.local/rest';
 
   constructor(private http: HttpClient) { }

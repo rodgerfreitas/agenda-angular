@@ -15,7 +15,9 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     this.resetForm();
   }
-
+  resetErrors () {
+    this.service.errorList = [];
+  }
   resetForm(form?: NgForm) {
     if (form != null) {
       form.resetForm();
@@ -30,7 +32,7 @@ export class ContactComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.value.id == null) {
-      this.insertRecord(form);
+       this.insertRecord(form);
     } else {
       this.updateRecord(form);
     }
@@ -38,17 +40,31 @@ export class ContactComponent implements OnInit {
 
   insertRecord(form: NgForm) {
     this.service.postContact(form.value).subscribe(res => {
-      this.toastr.success('Registro inserido com sucesso', 'Agenda');
-      this.resetForm(form);
-      this.service.refreshList();
+      if (res.status === 'OK' ) {
+        this.toastr.success('Registro inserido com sucesso', 'Agenda');
+        this.resetErrors();
+        this.resetForm(form);
+      } else {
+        this.service.errorList = res.errors;
+        this.toastr.error('Formulário preenchido incorretamente', 'Agenda');
+        console.log(res.errors);
+        this.service.refreshList();
+      }
     });
   }
 
   updateRecord(form: NgForm) {
     this.service.putContact(form.value).subscribe(res => {
-      this.toastr.info('Updated successfully', 'EMP. Register');
-      this.resetForm(form);
-      this.service.refreshList();
+      if (res.status === 'OK' ) {
+        this.toastr.info('Registro atualizado com sucesso', 'Agenda');
+        this.resetErrors();
+        this.resetForm(form);
+      } else {
+        this.service.errorList = res.errors;
+        this.toastr.error('Formulário preenchido incorretamente', 'Agenda');
+        console.log(res.errors);
+        this.service.refreshList();
+      }
     });
   }
 }
