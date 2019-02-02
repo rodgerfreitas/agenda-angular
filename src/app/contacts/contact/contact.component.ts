@@ -39,7 +39,7 @@ export class ContactComponent implements OnInit {
   }
 
   insertRecord(form: NgForm) {
-    this.service.postContact(form.value).subscribe(res => {
+    this.service.postContact(form.value).subscribe( (res: any) => {
       if (res.status === 'OK' ) {
         this.toastr.success('Registro inserido com sucesso', 'Agenda');
         this.resetErrors();
@@ -48,13 +48,13 @@ export class ContactComponent implements OnInit {
         this.service.errorList = res.errors;
         this.toastr.error('Formulário preenchido incorretamente', 'Agenda');
         console.log(res.errors);
-        this.service.refreshList();
       }
+      this.service.refreshList();
     });
   }
 
   updateRecord(form: NgForm) {
-    this.service.putContact(form.value).subscribe(res => {
+    this.service.putContact(form.value).subscribe((res: any) => {
       if (res.status === 'OK' ) {
         this.toastr.info('Registro atualizado com sucesso', 'Agenda');
         this.resetErrors();
@@ -63,8 +63,8 @@ export class ContactComponent implements OnInit {
         this.service.errorList = res.errors;
         this.toastr.error('Formulário preenchido incorretamente', 'Agenda');
         console.log(res.errors);
-        this.service.refreshList();
       }
+      this.service.refreshList();
     });
   }
 }
