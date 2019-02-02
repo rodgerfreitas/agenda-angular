@@ -7,11 +7,6 @@
     font-weight: lighter;
 }
 
-button[type="submit"]{
-    background-color: #67dfd4;
-    color: #fff;
-
-}
 .jumbotron{
     background-color: #fff;
     padding-top: 32px;

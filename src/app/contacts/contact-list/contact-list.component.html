@@ -1,8 +1,8 @@
-<table class="table table-hover table-sm">
+<table class="table table-hover table-striped table-sm">
   <tr *ngFor="let contact of service.list">
     <td (click)="populateForm(contact)">{{contact.nome}}</td>
     <td (click)="populateForm(contact)">{{contact.telefone}}</td>
     <td (click)="populateForm(contact)">{{contact.email}}</td>
-    <td><button (click)="onDelete(contact.id)" class="btn btn-sm btn-danger">X</button></td>
+    <td><button (click)="onDelete(contact.id)" class="btn btn-light btn-sm"><i class="far fa-trash-alt fa-red fa-2x"></i></button></td>
   </tr>
 </table>

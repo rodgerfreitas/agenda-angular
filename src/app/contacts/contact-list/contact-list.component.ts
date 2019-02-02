@@ -21,10 +21,10 @@ export class ContactListComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    if (confirm('Are you sure to delete this record?')) {
+    if (confirm('Deseja excluir o contato?')) {
       this.service.deleteContac(id).subscribe(res => {
         this.service.refreshList();
-        this.toastr.warning('Deleted successfully', 'EMP. Register');
+        this.toastr.warning('Contato removido', 'Agenda');
       });
     }
   }
